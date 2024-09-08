@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   title: {
-    type: Number,
+    type: String,
     required: true,
   },
   image: {
@@ -11,5 +11,5 @@ const postSchema = new Schema({
     required: true,
   },
 });
-const Post = mongoose.model("Post", ingredientSchema);
+const Post = mongoose.model("Post", postSchema);
 export default Post;
