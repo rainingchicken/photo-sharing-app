@@ -2,6 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
+import conn from "./db/conn.js";
+conn();
+
 const port = process.env.PORT || 6789;
 
 const app = express();
