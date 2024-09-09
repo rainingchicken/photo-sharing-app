@@ -1,12 +1,14 @@
-import { Button } from "flowbite-react";
+import { ToastContainer } from "react-toastify";
+import Header from "./components/Header";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
-      <Button outline gradientDuoTone="purpleToBlue">
-        Click me
-      </Button>
-    </div>
+    <>
+      <ToastContainer />
+      <Header />
+      <Outlet />
+    </>
   );
 };
 
