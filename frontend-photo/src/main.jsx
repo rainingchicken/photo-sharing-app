@@ -8,10 +8,11 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store.jsx";
 
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import { Provider } from "react-redux";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

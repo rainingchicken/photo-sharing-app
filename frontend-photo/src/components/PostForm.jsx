@@ -1,56 +1,110 @@
 import { Button, FileInput, Label } from "flowbite-react";
 import { useState } from "react";
+import { useCreateAPostMutation } from "../slices/postApiSlice";
+import { toast } from "react-toastify";
+import { app } from "../firebase";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 const PostForm = () => {
+  const [title, setTitle] = useState("");
+  const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
 
+  const [createPostAPICall] = useCreateAPostMutation();
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
+    setFile(e.target.files[0]);
   };
 
-  const handlePostFormSubmit = () => {};
+  const handleUploadImage = async () => {
+    try {
+      if (!file) {
+        toast.warning("Please select an image");
+        return;
+      }
+      const storage = getStorage(app);
+      const fileName = `${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, fileName);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+          toast.dark("something went wrong cannot upload image");
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setImage(downloadURL);
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    } catch (error) {
+      toast.warning("Something wento wrong cannot upload image");
+      console.log(error);
+    }
+  };
+
+  const handlePostFormSubmit = async (e) => {
+    e.preventDefault();
+    const newPost = {
+      title: title,
+      image: image,
+    };
+    try {
+      const res = await createPostAPICall(newPost).unwrap();
+      console.log(res);
+      toast.dark("success post created");
+    } catch (err) {
+      toast.warning("Something went wrong. Cannot create post");
+      console.log(err);
+    }
+  };
 
   return (
     <form onSubmit={handlePostFormSubmit}>
-      <input type="text" placeholder="Sunset at the beach..." />
-      <div className="flex w-full items-center justify-center">
-        <Label
-          htmlFor="dropzone-file"
-          className="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-        >
-          <div className="flex flex-col items-center justify-center pb-6 pt-5">
-            <svg
-              className="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 16"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-              />
-            </svg>
-            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-              <span className="font-semibold">Click to upload</span> or drag and
-              drop
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              SVG, PNG, JPG or GIF (MAX. 800x400px)
-            </p>
-          </div>
-          <FileInput
-            id="dropzone-file"
-            className="hidden"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-        </Label>
-      </div>
-      <Button gradientDuoTone="purpleToBlue">Share!</Button>
+      <input
+        type="text"
+        placeholder="Sunset at the beach..."
+        onChange={handleTitleChange}
+      />
+
+      <FileInput type="file" accept="image/*" onChange={handleImageChange} />
+      <Button onClick={handleUploadImage} gradientDuoTone="purpleToBlue">
+        Upload image
+      </Button>
+      {image && (
+        <img
+          src={image}
+          alt="upload image"
+          className="w-full h-90 object-cover"
+        />
+      )}
+      <Button type="submit" gradientDuoTone="purpleToBlue">
+        Share!
+      </Button>
     </form>
   );
 };
