@@ -10,6 +10,7 @@ conn();
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 //routes imports
+import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
 
 const port = process.env.PORT || 6789;
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //routes
+app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 
 //error handling
