@@ -12,7 +12,6 @@ export const PostApiSlice = apiSlice.injectEndpoints({
       query: (data) => ({
         url: `/api/posts/${data}`,
         method: "GET",
-        body: data,
       }),
     }),
     createAPost: builder.mutation({

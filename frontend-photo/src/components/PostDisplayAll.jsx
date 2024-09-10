@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGetAllPostsMutation } from "../slices/postApiSlice";
 import { Spinner } from "flowbite-react";
+import { Link } from "react-router-dom";
 
 const PostDisplayAll = () => {
   const [posts, setPosts] = useState([]);
@@ -25,8 +26,9 @@ const PostDisplayAll = () => {
         posts.map((post) => {
           return (
             <div key={post._id}>
-              <img src={post.image} alt={post.image} />
+              <img src={post.image} alt={post.title} />
               <p>{post.title}</p>
+              <Link to={`/posts/${post._id}`}>View</Link>
             </div>
           );
         })}
