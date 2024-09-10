@@ -9,6 +9,7 @@ conn();
 
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
+//routes imports
 import postRoutes from "./routes/postRoutes.js";
 
 const port = process.env.PORT || 6789;
