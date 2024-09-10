@@ -11,7 +11,8 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
 - MERN
   - backend: nodejs, express, mongoose
   - frontend: vite, react
-- [Auth0](https://auth0.com/docs)
+- ~~[Auth0](https://auth0.com/docs)~~ not enough time to experiment backand and frontend auth0 and render is already hard enough
+- jwt
   - login
   - signup
 - [firebase](https://firebase.google.com)
