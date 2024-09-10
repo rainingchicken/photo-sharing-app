@@ -1,10 +1,20 @@
 import React from "react";
-import PostForm from "../components/PostForm";
+import PostDisplayAll from "../components/PostDisplayAll";
+import { Button } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  const handleCreatePost = () => {
+    navigate("/create");
+  };
+
   return (
     <div>
-      <PostForm />
+      <Button onClick={handleCreatePost} gradientDuoTone="purpleToBlue">
+        Create post
+      </Button>
+      <PostDisplayAll />
     </div>
   );
 };

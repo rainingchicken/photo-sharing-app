@@ -13,12 +13,14 @@ import store from "./store.jsx";
 
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/create" element={<CreatePost />} />
     </Route>
   )
 );
