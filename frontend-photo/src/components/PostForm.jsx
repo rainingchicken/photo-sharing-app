@@ -13,11 +13,14 @@ import {
 import { useBeforeUnload, useBlocker } from "react-router-dom";
 import { Alert } from "flowbite-react";
 
+import { IoIosWarning } from "react-icons/io";
+
 const PostForm = () => {
   const [title, setTitle] = useState("");
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
   const [image, setImage] = useState(null);
+  const [clickedShare, setClickedShare] = useState(false);
 
   const [createPostAPICall, { isLoading }] = useCreateAPostMutation();
 
@@ -85,6 +88,7 @@ const PostForm = () => {
       const res = await createPostAPICall(newPost).unwrap();
       console.log(res);
       toast.success("success post created");
+      setClickedShare(true);
     } catch (err) {
       toast.error("Cannot create the post. Make sure to fill in all fields");
       console.log(err);
@@ -94,12 +98,15 @@ const PostForm = () => {
   //if user tries to leave route
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      image !== null && currentLocation.pathname !== nextLocation.pathname
+      image !== null &&
+      !clickedShare &&
+      currentLocation.pathname !== nextLocation.pathname
   );
 
   const handleLeavePage = () => {
     const storage = getStorage(app);
     const storageRef = ref(storage, fileName);
+    console.log(fileName);
     deleteObject(storageRef)
       .then(() => {
         toast.info("Form discarded");
@@ -107,7 +114,7 @@ const PostForm = () => {
       .catch((error) => {
         toast.error("Something went wrong. Cannot cancel form");
         console.log(error);
-        blocker.reset();
+        return blocker.reset();
       });
     setImage(null);
     blocker.proceed();
@@ -126,8 +133,11 @@ const PostForm = () => {
       {blocker.state === "blocked" ? (
         <>
           <Alert color="warning">
-            <span className="font-medium">Alert!</span> You have unsaved
-            changes. Are you sure you want leave this page?
+            <span className="font-medium">
+              <IoIosWarning />
+              Alert!
+            </span>
+            You have unsaved changes. Are you sure you want leave this page?
             <div>
               <button
                 onClick={handleLeavePage}

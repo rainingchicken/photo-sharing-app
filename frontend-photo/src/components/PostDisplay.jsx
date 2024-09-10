@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
-import { useGetAPostMutation } from "../slices/postApiSlice";
+import {
+  useDeleteAPostMutation,
+  useGetAPostMutation,
+} from "../slices/postApiSlice";
 import { toast } from "react-toastify";
-import { Spinner } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
+
+import { FaRegTrashAlt } from "react-icons/fa";
+import { deleteObject, getStorage, ref } from "firebase/storage";
+import { app } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const PostDisplay = ({ _id: _id }) => {
   const [post, setPost] = useState(null);
 
+  const navigate = useNavigate();
+
   const [getPostAPICall, { isLoading }] = useGetAPostMutation();
+  const [deletePostAPICall] = useDeleteAPostMutation();
 
   const fetchAPost = async () => {
     try {
@@ -22,13 +33,48 @@ const PostDisplay = ({ _id: _id }) => {
     fetchAPost();
   }, []);
 
+  const handleDelete = async () => {
+    //delete image from firebase cloud
+    let fileName;
+    if (post) {
+      fileName = post.image
+        .split(".appspot.com/o/")
+        .pop()
+        .split("?alt=media&token")[0];
+    }
+    console.log(fileName);
+    const storage = getStorage(app);
+    const storageRef = ref(storage, fileName);
+    deleteObject(storageRef)
+      .then(() => {
+        // toast.info("Post deleted");
+      })
+      .catch((error) => {
+        toast.error("Something went wrong. Cannot delete post");
+        console.log(error);
+      });
+
+    //delete from mongodb
+    try {
+      await deletePostAPICall(_id).unwrap();
+      toast.info("Post deleted");
+    } catch (error) {
+      toast.error("Cannot delete post");
+    }
+    navigate("/dashboard");
+  };
   return (
     <div>
       {isLoading && <Spinner aria-label="loading the post" />}
       {post && (
         <>
-          <img src={post.image} alt={post.title} />
-          <p>{post.title}</p>
+          <Button onClick={handleDelete} gradientDuoTone="purpleToBlue">
+            <FaRegTrashAlt />
+          </Button>
+          <>
+            <img src={post.image} alt={post.title} />
+            <p>{post.title}</p>
+          </>
         </>
       )}
     </div>
