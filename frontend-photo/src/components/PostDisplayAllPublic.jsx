@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllPublicPostsMutation } from "../slices/publicPostApiSlice";
 import { Link } from "react-router-dom";
-import { Spinner } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 
 const PostDisplayAllPublic = () => {
   const [posts, setPosts] = useState([]);
+  const [showMore, setShowMore] = useState(true);
+
   const [
     getAllPublicPostsAPICall,
     { isLoading },
@@ -13,6 +15,9 @@ const PostDisplayAllPublic = () => {
   const fetchAllPosts = async () => {
     try {
       const res = await getAllPublicPostsAPICall().unwrap();
+      if (res.length < 5) {
+        setShowMore(false);
+      }
       setPosts(res);
     } catch (error) {
       toast.error("Cannot get posts");
@@ -21,6 +26,24 @@ const PostDisplayAllPublic = () => {
   useEffect(() => {
     fetchAllPosts();
   }, []);
+
+  const handleShowMore = async () => {
+    const startIndex = posts.length;
+    try {
+      const res = await getAllPublicPostsAPICall(
+        `startIndex=${startIndex}`
+      ).unwrap();
+
+      setPosts(res);
+
+      if (res.length < 5) {
+        setShowMore(false);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(`Cannot get posts`);
+    }
+  };
 
   return (
     <div>
@@ -31,10 +54,12 @@ const PostDisplayAllPublic = () => {
             <div key={post._id}>
               <img src={post.image} alt={post.title} />
               <p>{post.title}</p>
-              <Link to={`/allposts/${post._id}`}>View</Link>
             </div>
           );
         })}
+      <div>
+        {showMore && <Button onClick={handleShowMore}>SHOW MORE</Button>}
+      </div>
     </div>
   );
 };
