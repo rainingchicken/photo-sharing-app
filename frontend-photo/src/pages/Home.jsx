@@ -1,5 +1,11 @@
+import PostDisplayAllPublic from "../components/PostDisplayAllPublic";
+
 const Home = () => {
-  return <div>Home </div>;
+  return (
+    <div>
+      <PostDisplayAllPublic />
+    </div>
+  );
 };
 
 export default Home;
