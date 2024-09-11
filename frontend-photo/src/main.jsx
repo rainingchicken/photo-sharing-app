@@ -19,6 +19,7 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import Login from "./pages/Login.jsx";
 import Logout from "./pages/Logout.jsx";
 import Signup from "./pages/Signup.jsx";
+import SinglePostPublic from "./pages/SinglePostPublic.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path="/allposts/:_id" element={<SinglePostPublic />} />
       <Route path="" element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create" element={<CreatePost />} />

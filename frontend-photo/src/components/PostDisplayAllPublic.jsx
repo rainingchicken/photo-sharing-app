@@ -46,15 +46,20 @@ const PostDisplayAllPublic = () => {
   };
 
   return (
-    <div>
-      {isLoading && <Spinner aria-label="loading all posts" />}
+    <div className="grid grid-cols-3 gap-4 p-8 ">
+      {isLoading && <Spinner size="xxxl" aria-label="loading all posts" />}
       {posts &&
         posts.map((post) => {
           return (
-            <div key={post._id}>
-              <img src={post.image} alt={post.title} />
-              <p>{post.title}</p>
-            </div>
+            <Link to={`/allposts/${post._id}`}>
+              <div
+                className="scale-100 z-10 transition-scale duration-200 hover:scale-105"
+                key={post._id}
+              >
+                <img src={post.image} alt={post.title} />
+                <p>{post.title}</p>
+              </div>
+            </Link>
           );
         })}
       <div>

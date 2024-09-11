@@ -68,12 +68,17 @@ const PostDisplay = ({ _id: _id }) => {
       {isLoading && <Spinner aria-label="loading the post" />}
       {post && (
         <>
-          <Button onClick={handleDelete} gradientDuoTone="purpleToBlue">
+          <Button
+            className="mx-auto"
+            onClick={handleDelete}
+            gradientDuoTone="purpleToBlue"
+          >
             <FaRegTrashAlt />
           </Button>
           <>
+            {" "}
+            <h1 className="text-center m-4">{post.title}</h1>
             <img src={post.image} alt={post.title} />
-            <p>{post.title}</p>
           </>
         </>
       )}

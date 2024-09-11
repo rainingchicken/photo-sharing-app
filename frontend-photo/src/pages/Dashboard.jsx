@@ -11,7 +11,12 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Button onClick={handleCreatePost} gradientDuoTone="purpleToBlue">
+      <h1 className="text-center">Dashboard</h1>
+      <Button
+        className="my-4 mx-auto"
+        onClick={handleCreatePost}
+        gradientDuoTone="purpleToBlue"
+      >
         Create post
       </Button>
       <PostDisplayAll />

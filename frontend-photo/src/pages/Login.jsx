@@ -40,7 +40,10 @@ const Login = () => {
     <div className="flex ">
       <div className="my-0 mx-auto basis-9/12 ">
         <h1 className="text-center">Login</h1>
-        <form className="flex max-w-md flex-col gap-4" onSubmit={submitHandler}>
+        <form
+          className="flex max-w-md flex-col gap-4 mx-auto"
+          onSubmit={submitHandler}
+        >
           <label className="mb-2 block" htmlFor="loginEmail">
             Email Address:{" "}
           </label>

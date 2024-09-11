@@ -1,4 +1,3 @@
-import React from "react";
 import PostDisplay from "../components/PostDisplay";
 import { useParams } from "react-router-dom";
 

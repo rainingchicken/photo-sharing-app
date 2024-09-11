@@ -46,7 +46,7 @@ const Signup = () => {
       <div className="my-0 mx-auto basis-9/12 ">
         <h1 className="text-center">Sign Up</h1>
         <form
-          className="flex max-w-md flex-col gap-4 basis-9/12"
+          className="flex mx-auto max-w-md flex-col gap-4 basis-9/12"
           onSubmit={submitHandler}
         >
           <label className="mb-2 block" htmlFor="signupName">
