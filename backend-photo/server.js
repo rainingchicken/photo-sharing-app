@@ -29,11 +29,11 @@ app.use("/api/allposts", publicPostRoutes);
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve();
-  app.use(express.static(path.join(__dirname, "/frontend-recipe/dist")));
+  app.use(express.static(path.join(__dirname, "/frontend-photo/dist")));
 
   app.get("*", (req, res) =>
     res.sendFile(
-      path.resolve(__dirname, "frontend-recipe", "dist", "index.html")
+      path.resolve(__dirname, "frontend-photo", "dist", "index.html")
     )
   );
 } else {
