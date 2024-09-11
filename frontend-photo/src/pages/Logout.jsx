@@ -16,7 +16,7 @@ const Logout = () => {
       toast.info("Logout successful!");
     } catch (err) {
       console.log(err);
-      toast.error(err?.data?.error || err.error);
+      toast.error(err?.data?.message || err.error);
     }
   };
   useEffect(() => {

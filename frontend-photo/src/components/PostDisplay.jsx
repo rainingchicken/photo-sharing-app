@@ -58,8 +58,8 @@ const PostDisplay = ({ _id: _id }) => {
     try {
       await deletePostAPICall(_id).unwrap();
       toast.info("Post deleted");
-    } catch (error) {
-      toast.error("Cannot delete post");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
     navigate("/dashboard");
   };

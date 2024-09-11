@@ -21,6 +21,9 @@ const Header = () => {
             <Navbar.Link active={path === "/login"} to="/login" as={Link}>
               Login
             </Navbar.Link>
+            <Navbar.Link active={path === "/signup"} to="/signup" as={Link}>
+              Signup
+            </Navbar.Link>
           </>
         ) : (
           <>
