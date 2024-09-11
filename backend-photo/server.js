@@ -1,6 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-
+import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -26,6 +26,21 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/allposts", publicPostRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+  app.use(express.static(path.join(__dirname, "/frontend-recipe/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, "frontend-recipe", "dist", "index.html")
+    )
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running....");
+  });
+}
 
 //error handling
 app.use(notFound);
