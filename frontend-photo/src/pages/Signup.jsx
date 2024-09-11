@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../slices/usersApiSlice";
 import { toast } from "react-toastify";
+import { Button, TextInput } from "flowbite-react";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -41,55 +42,68 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <h1 className="title">Sign Up</h1>
-      <form className="RecipeForm" onSubmit={submitHandler}>
-        <label htmlFor="signupName">Name: </label>
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Enter name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="signupEmail">Email Address: </label>
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label htmlFor="signupPassword">Password: </label>
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label htmlFor="signupConfirmPassword">Confirm Password: </label>
-        <input
-          id="signupConfirmPassword"
-          type="password"
-          placeholder="Confirm password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button
-          className="btnForm submitbtn"
-          disabled={isLoading}
-          type="submit"
+    <div className="flex">
+      <div className="my-0 mx-auto basis-9/12 ">
+        <h1 className="text-center">Sign Up</h1>
+        <form
+          className="flex max-w-md flex-col gap-4 basis-9/12"
+          onSubmit={submitHandler}
         >
-          Sign Up
-        </button>
-        <p>
-          Already have an account?<Link to="/login"> Login</Link>
-        </p>
-        {isLoading && <h1>Loading...</h1>}
-      </form>
-    </>
+          <label className="mb-2 block" htmlFor="signupName">
+            Name:
+          </label>
+          <TextInput
+            id="signupName"
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label className="mb-2 block" htmlFor="signupEmail">
+            Email Address:
+          </label>
+          <TextInput
+            id="signupEmail"
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className="mb-2 block" htmlFor="signupPassword">
+            Password:
+          </label>
+          <TextInput
+            id="signupPassword"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label className="mb-2 block" htmlFor="signupConfirmPassword">
+            Confirm Password:
+          </label>
+          <TextInput
+            id="signupConfirmPassword"
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <Button
+            className="btnForm submitbtn"
+            disabled={isLoading}
+            type="submit"
+          >
+            Sign Up
+          </Button>
+          <p>
+            Already have an account?<Link to="/login"> Login</Link>
+          </p>
+          {isLoading && <h1>Loading...</h1>}
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -20,13 +20,17 @@ const PostDisplayAll = () => {
   }, []);
 
   return (
-    <div>
+    <div className="columns-3">
       {isLoading && <Spinner aria-label="loading all posts" />}
       {posts &&
         posts.map((post) => {
           return (
             <div key={post._id}>
-              <img src={post.image} alt={post.title} />
+              <img
+                className="w-full aspect-auto"
+                src={post.image}
+                alt={post.title}
+              />
               <p>{post.title}</p>
               <Link to={`/posts/${post._id}`}>View</Link>
             </div>

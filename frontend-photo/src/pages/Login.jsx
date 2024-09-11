@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
+import { Button, TextInput } from "flowbite-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,41 +37,49 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h1 className="title">Login</h1>
-      <form className="RecipeForm" onSubmit={submitHandler}>
-        <label htmlFor="loginEmail">Email Address: </label>
-        <input
-          required
-          id="loginEmail"
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+    <div className="flex ">
+      <div className="my-0 mx-auto basis-9/12 ">
+        <h1 className="text-center">Login</h1>
+        <form className="flex max-w-md flex-col gap-4" onSubmit={submitHandler}>
+          <label className="mb-2 block" htmlFor="loginEmail">
+            Email Address:{" "}
+          </label>
+          <TextInput
+            required
+            id="loginEmail"
+            type="email"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <label htmlFor="loginPassword">Password: </label>
-        <input
-          required
-          id="loginPassword"
-          type="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button
-          className="btnForm submitbtn"
-          disabled={isLoading}
-          type="submit"
-        >
-          Log In
-        </button>
-        <p>
-          New user? <Link to="/signup">Sign up</Link>
-        </p>
-        {isLoading && <h1>Loading...</h1>}
-      </form>
-    </>
+          <label className="mb-2 block" htmlFor="loginPassword">
+            Password:
+          </label>
+
+          <TextInput
+            required
+            id="loginPassword"
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button
+            className="btnForm submitbtn"
+            disabled={isLoading}
+            type="submit"
+          >
+            Log In
+          </Button>
+          <p>
+            New user? <Link to="/signup">Sign up</Link>
+          </p>
+          {isLoading && <h1>Loading...</h1>}
+        </form>
+      </div>
+    </div>
   );
 };
 
