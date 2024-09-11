@@ -1,7 +1,9 @@
 import { Navbar } from "flowbite-react";
+import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const location = useLocation();
   const path = location.pathname;
   return (
