@@ -51,11 +51,8 @@ const PostDisplayAllPublic = () => {
       {posts &&
         posts.map((post) => {
           return (
-            <Link to={`/allposts/${post._id}`}>
-              <div
-                className="scale-100 z-10 transition-scale duration-200 hover:scale-105"
-                key={post._id}
-              >
+            <Link key={post._id} to={`/allposts/${post._id}`}>
+              <div className="scale-100 z-10 transition-scale duration-200 hover:scale-105">
                 <img src={post.image} alt={post.title} />
                 <p>{post.title}</p>
               </div>

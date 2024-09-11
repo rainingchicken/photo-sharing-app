@@ -1,4 +1,4 @@
-import { Button, FileInput, Spinner } from "flowbite-react";
+import { Button, FileInput, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useCreateAPostMutation } from "../slices/postApiSlice";
 import { toast } from "react-toastify";
@@ -129,55 +129,79 @@ const PostForm = () => {
   useBeforeUnload(() => handleLeavePage());
 
   return (
-    <form onSubmit={handlePostFormSubmit}>
-      {blocker.state === "blocked" ? (
-        <>
-          <Alert color="warning">
-            <span className="font-medium">
-              <IoIosWarning />
-              Alert!
-            </span>
-            You have unsaved changes. Are you sure you want leave this page?
-            <div>
-              <button
-                onClick={handleLeavePage}
-                type="button"
-                className="mr-2 inline-flex items-center rounded-lg bg-cyan-700 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-800 dark:hover:bg-cyan-900"
-              >
-                Proceed
-              </button>
-              <button
-                type="button"
-                className="rounded-lg border border-cyan-700 bg-transparent px-3 py-1.5 text-center text-xs font-medium text-cyan-700 hover:bg-cyan-800 hover:text-white focus:ring-4 focus:ring-cyan-300 dark:border-cyan-800 dark:text-cyan-800 dark:hover:text-white"
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
+    <div className="p-8 flex ">
+      <div className="my-0 mx-auto basis-full ">
+        <h1 className="text-center my-4">Create a post</h1>
+        <form
+          className="flex max-w-full flex-col gap-4 mx-auto"
+          onSubmit={handlePostFormSubmit}
+        >
+          {blocker.state === "blocked" ? (
+            <div className="flex-col ">
+              <Alert className="" color="warning" icon={IoIosWarning}>
+                <span className="font-medium ">Alert! </span>
+                You have unsaved changes. Are you sure you want leave this page?
+                <div>
+                  <button
+                    onClick={handleLeavePage}
+                    type="button"
+                    className="mr-2 inline-flex items-center rounded-lg bg-cyan-700 px-3 py-1.5 text-center text-xs font-large text-white hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-800 dark:hover:bg-cyan-900"
+                  >
+                    Proceed
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-lg border border-cyan-700 bg-transparent px-3 py-1.5 text-center text-xs font-medium text-cyan-700 hover:bg-cyan-800 hover:text-white focus:ring-4 focus:ring-cyan-300 dark:border-cyan-800 dark:text-cyan-800 dark:hover:text-white"
+                    onClick={handleCancel}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </Alert>
             </div>
-          </Alert>
-        </>
-      ) : null}
-      <input
-        type="text"
-        placeholder="Sunset at the beach..."
-        onChange={handleTitleChange}
-      />
-      <FileInput type="file" accept="image/*" onChange={handleImageChange} />
-      <Button onClick={handleUploadImage} gradientDuoTone="purpleToBlue">
-        Upload image
-      </Button>
-      {image && (
-        <img
-          src={image}
-          alt="upload image"
-          className="w-full h-90 object-cover"
-        />
-      )}
-      <Button disabled={isLoading} type="submit" gradientDuoTone="purpleToBlue">
-        Share!
-      </Button>
-      {isLoading ? <Spinner aria-label="Sharing new post" size="xl" /> : <></>}
-    </form>
+          ) : null}
+          <label htmlFor="titleCreation">Title/ Short Description</label>
+          <TextInput
+            type="text"
+            id="titleCreation"
+            placeholder="Sunset at the beach..."
+            onChange={handleTitleChange}
+          />
+          <div className="flex justify-between">
+            <FileInput
+              className="basis-10/12 mr-4"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+            <Button onClick={handleUploadImage} gradientDuoTone="purpleToBlue">
+              Upload
+            </Button>
+          </div>
+          {image && (
+            <img
+              src={image}
+              alt="upload image"
+              className="w-full h-90 object-cover"
+            />
+          )}
+          <Button
+            className="mx-auto"
+            disabled={isLoading}
+            type="submit"
+            gradientDuoTone="purpleToBlue"
+          >
+            Share!
+          </Button>
+
+          {isLoading ? (
+            <Spinner aria-label="Sharing new post" size="xl" />
+          ) : (
+            <></>
+          )}
+        </form>
+      </div>
+    </div>
   );
 };
 

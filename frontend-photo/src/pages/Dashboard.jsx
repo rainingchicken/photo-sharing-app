@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PostDisplayAll from "../components/PostDisplayAll";
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,10 @@ const Dashboard = () => {
   const handleCreatePost = () => {
     navigate("/create");
   };
+
+  useEffect(() => {
+    document.title = "Dashboard";
+  }, []);
 
   return (
     <div>
