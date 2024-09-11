@@ -17,6 +17,7 @@ import CreatePost from "./pages/CreatePost.jsx";
 import SinglePost from "./pages/SinglePost.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Login from "./pages/Login.jsx";
+import Logout from "./pages/Logout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create" element={<CreatePost />} />
         <Route path="/posts/:_id" element={<SinglePost />} />
+        <Route path="/logout" element={<Logout />} />
       </Route>
     </Route>
   )
