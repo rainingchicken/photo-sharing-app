@@ -12,6 +12,7 @@ import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 //routes imports
 import userRoutes from "./routes/userRoutes.js";
 import postRoutes from "./routes/postRoutes.js";
+import publicPostRoutes from "./routes/publicPostRoutes.js";
 
 const port = process.env.PORT || 6789;
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 //routes
 app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/allposts", publicPostRoutes);
 
 //error handling
 app.use(notFound);
