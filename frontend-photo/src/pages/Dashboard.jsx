@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PostDisplayAll from "../components/PostDisplayAll";
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Dashboard = () => {
         Create post
       </Button>
       <PostDisplayAll />
+      <Footer />
     </div>
   );
 };

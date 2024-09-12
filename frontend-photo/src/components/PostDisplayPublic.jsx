@@ -24,13 +24,19 @@ const PostDisplayPublic = ({ _id: _id }) => {
 
   return (
     <div>
-      {isLoading && <Spinner aria-label="loading the post" />}
-      {post && (
+      {isLoading ? (
+        <Spinner size="xxl" aria-label="loading the post" />
+      ) : (
         <>
-          <>
-            <h1 className="text-center m-4">{post.title}</h1>
-            <img src={post.image} alt={post.title} />
-          </>
+          {" "}
+          {post && (
+            <>
+              <>
+                <h1 className="text-center m-4">{post.title}</h1>
+                <img src={post.image} alt={post.title} />
+              </>
+            </>
+          )}
         </>
       )}
     </div>

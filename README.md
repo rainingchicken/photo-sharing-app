@@ -33,6 +33,8 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
 
   Images:
 
-  - Photo by Pixabay: https://www.pexels.com/photo/close-up-photo-of-cute-sleeping-cat-416160/
-  - Photo by Pixabay from Pexels: https://www.pexels.com/photo/white-and-grey-kitten-on-brown-and-black-leopard-print-textile-45201/
-  - Photo by Wojciech Kumpicki from Pexels: https://www.pexels.com/photo/orange-tabby-cat-near-window-2071873/
+  - Photo by Diana ✨ from Pexels: https://www.pexels.com/photo/playful-cat-lying-on-a-carpet-1276553/
+  - Photo by Alex Dolle from Pexels: https://www.pexels.com/photo/brown-and-white-short-coated-dog-sitting-and-smiling-2463238/
+  - Photo by Hom Nay Chup Gi from Pexels: https://www.pexels.com/photo/a-dog-is-walking-on-a-leash-with-a-person-28305670/
+  - Photo by Luis Quintero from Pexels: https://www.pexels.com/photo/man-in-white-and-blue-stripe-polo-shirt-sitting-on-chair-1640784/
+  - Photo by Barb Landro from Pexels: https://www.pexels.com/photo/hotcakes-28260045/

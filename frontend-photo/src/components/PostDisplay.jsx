@@ -65,21 +65,27 @@ const PostDisplay = ({ _id: _id }) => {
   };
   return (
     <div>
-      {isLoading && <Spinner aria-label="loading the post" />}
-      {post && (
+      {isLoading ? (
+        <Spinner size="xxl" aria-label="loading the post" />
+      ) : (
         <>
-          <Button
-            className="mx-auto"
-            onClick={handleDelete}
-            gradientDuoTone="purpleToBlue"
-          >
-            <FaRegTrashAlt />
-          </Button>
-          <>
-            {" "}
-            <h1 className="text-center m-4">{post.title}</h1>
-            <img src={post.image} alt={post.title} />
-          </>
+          {" "}
+          {post && (
+            <>
+              <Button
+                className="mx-auto"
+                onClick={handleDelete}
+                gradientDuoTone="purpleToBlue"
+              >
+                <FaRegTrashAlt />
+              </Button>
+              <>
+                {" "}
+                <h1 className="text-center m-4">{post.title}</h1>
+                <img src={post.image} alt={post.title} />
+              </>
+            </>
+          )}
         </>
       )}
     </div>

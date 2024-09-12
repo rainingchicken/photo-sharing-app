@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import PostDisplay from "../components/PostDisplay";
 import { useParams } from "react-router-dom";
 
@@ -6,6 +7,7 @@ const SinglePost = () => {
   return (
     <div>
       <PostDisplay _id={_id} />
+      <Footer />
     </div>
   );
 };
