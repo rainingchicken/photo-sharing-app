@@ -2,7 +2,7 @@
 
 https://photo-sharing-app-9t4m.onrender.com
 
-\*website may take more than 5 mins to load due to free hosting 🥲 but im still grateful its free 🌟
+\*website may take more than 5 mins to load due to free hosting 🥲 but im still grateful its free!! 🌟
 
 ## Purpose
 
@@ -45,7 +45,8 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
 - MERN
   - backend: nodejs, express, mongoose
   - frontend: vite, react
-- ~~[Auth0](https://auth0.com/docs)~~ not enough time to experiment backand and frontend auth0 and render is already hard enough
+- ~~Auth0~~
+  - not enough time to experiment backand and frontend auth0 and render is already hard enough
 - jwt
   - login
   - signup
@@ -65,7 +66,7 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
   - homepage of all images
   - personal dashboard
 
-  Images:
+  ## Images:
 
   - Photo by Diana ✨ from Pexels: https://www.pexels.com/photo/playful-cat-lying-on-a-carpet-1276553/
   - Photo by Alex Dolle from Pexels: https://www.pexels.com/photo/brown-and-white-short-coated-dog-sitting-and-smiling-2463238/

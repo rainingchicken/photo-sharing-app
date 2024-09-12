@@ -8,7 +8,7 @@ const Browse = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-center">Let's waste time!!</h1>
+      <h1 className="text-center">Let's procrastinate!! (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</h1>
       <PostDisplayAllPublic />
       <Footer />
     </div>
