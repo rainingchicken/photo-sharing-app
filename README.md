@@ -6,6 +6,36 @@ This is an appliocation for users to share photos and images. This project was c
 
 https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medium=discover
 
+## Technology
+
+- MERN
+- Vite
+- tailwind and flowbit
+- firebase
+- render
+
+## Features
+
+- user auth
+  - signup
+  - login
+  - logout
+- browse
+- pagination
+- create post
+- delete post
+
+## Test
+
+- user1
+  - email: john@email.com
+  - password: a
+- user2
+  - email: smith@email.com
+  - password: a
+
+\*fake emails
+
 ## Wireframe
 
 - MERN
@@ -38,3 +68,11 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
   - Photo by Hom Nay Chup Gi from Pexels: https://www.pexels.com/photo/a-dog-is-walking-on-a-leash-with-a-person-28305670/
   - Photo by Luis Quintero from Pexels: https://www.pexels.com/photo/man-in-white-and-blue-stripe-polo-shirt-sitting-on-chair-1640784/
   - Photo by Barb Landro from Pexels: https://www.pexels.com/photo/hotcakes-28260045/
+  - Photo by Wojciech Kumpicki: https://www.pexels.com/photo/orange-tabby-cat-near-window-2071873/
+  - Photo by Александар Цветановић from Pexels: https://www.pexels.com/photo/selective-photo-of-brown-pet-paw-1440406/
+  - Photo by Anna Shvets from Pexels: https://www.pexels.com/photo/scottish-fold-cat-with-pink-shower-cap-4587959/
+  - Photo by Rakicevic Nenad from Pexels: https://www.pexels.com/photo/man-holding-ice-cream-cone-under-cloud-1262302/
+
+- Photo by Cats Coming from Pexels: https://www.pexels.com/photo/slice-of-loaf-bread-with-dog-face-920220/
+- Photo by Pixabay from Pexels: https://www.pexels.com/photo/yellow-duckies-in-line-on-a-concrete-floor-106144/
+- Photo by Pixabay from Pexels: https://www.pexels.com/photo/squirrel-on-grass-458976/

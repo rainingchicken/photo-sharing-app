@@ -35,7 +35,7 @@ const Hero = () => {
           <img
             className=" lg:scale-150 object-cover w-auto h-auto max-w-lg transition-all duration-300 rounded-lg cursor-pointer filter grayscale hover:grayscale-0"
             src="https://images.pexels.com/photos/1640784/pexels-photo-1640784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="image description"
+            alt="painting painting bulls and flamenco dancers on the street"
           />
         </div>
       </div>
@@ -44,6 +44,7 @@ const Hero = () => {
           <img
             className=" object-cover h-auto w-auto max-w-lg transition-all duration-300 rounded-lg blur-sm hover:blur-none"
             src="https://images.pexels.com/photos/28260045/pexels-photo-28260045/free-photo-of-hotcakes.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="blueberry pancakes drizzled in syrup"
           />{" "}
         </div>
         <h1 className="col-span-1 lg:m-auto my-4 text-center">

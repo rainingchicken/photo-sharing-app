@@ -1,4 +1,10 @@
-import { Button, FileInput, Spinner, TextInput } from "flowbite-react";
+import {
+  Button,
+  FileInput,
+  Progress,
+  Spinner,
+  TextInput,
+} from "flowbite-react";
 import { useState } from "react";
 import { useCreateAPostMutation } from "../slices/postApiSlice";
 import { toast } from "react-toastify";
@@ -10,7 +16,7 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
-import { useBeforeUnload, useBlocker } from "react-router-dom";
+import { useBeforeUnload, useBlocker, useNavigate } from "react-router-dom";
 import { Alert } from "flowbite-react";
 
 import { IoIosWarning } from "react-icons/io";
@@ -21,6 +27,10 @@ const PostForm = () => {
   const [fileName, setFileName] = useState(null);
   const [image, setImage] = useState(null);
   const [clickedShare, setClickedShare] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+
+  // const navigate = useNavigate();
 
   const [createPostAPICall, { isLoading }] = useCreateAPostMutation();
 
@@ -48,6 +58,13 @@ const PostForm = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+          setUploadProgress(progress);
+          if (progress === 100) {
+            setIsUploading(false);
+          } else {
+            setIsUploading(true);
+          }
+
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -68,7 +85,7 @@ const PostForm = () => {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImage(downloadURL);
-            console.log("File available at", downloadURL);
+            // console.log("File available at", downloadURL);
           });
         }
       );
@@ -85,10 +102,12 @@ const PostForm = () => {
       image: image,
     };
     try {
-      const res = await createPostAPICall(newPost).unwrap();
-      console.log(res);
+      await createPostAPICall(newPost).unwrap();
+      // console.log(res);
       toast.success("success post created");
       setClickedShare(true);
+      setImage(null);
+      // navigate("/dashboard");
     } catch (err) {
       toast.error("Cannot create the post. Make sure to fill in all fields");
       console.log(err);
@@ -98,27 +117,28 @@ const PostForm = () => {
   //if user tries to leave route
   let blocker = useBlocker(
     ({ currentLocation, nextLocation }) =>
-      image !== null &&
-      !clickedShare &&
-      currentLocation.pathname !== nextLocation.pathname
+      image !== null ||
+      (!clickedShare && currentLocation.pathname !== nextLocation.pathname)
   );
 
   const handleLeavePage = () => {
-    const storage = getStorage(app);
-    const storageRef = ref(storage, fileName);
-    console.log(fileName);
-    deleteObject(storageRef)
-      .then(() => {
-        toast.info("Form discarded");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong. Cannot cancel form");
-        console.log(error);
-        return blocker.reset();
-      });
+    if (image) {
+      const storage = getStorage(app);
+      const storageRef = ref(storage, fileName);
+      // console.log(fileName);
+      deleteObject(storageRef)
+        .then(() => {
+          toast.info("Form discarded");
+        })
+        .catch((error) => {
+          toast.error("Something went wrong. Cannot cancel form");
+          console.log(error);
+          return blocker.reset();
+        });
+    }
     setImage(null);
     blocker.proceed();
-    return blocker.state === null;
+    return (blocker.state = null);
   };
 
   const handleCancel = () => {
@@ -178,6 +198,19 @@ const PostForm = () => {
               Upload
             </Button>
           </div>
+          {isUploading ? (
+            <Progress
+              progress={uploadProgress}
+              progressLabelPosition="inside"
+              textLabel="Image Upload Progress"
+              textLabelPosition="inside"
+              size="lg"
+              labelProgress
+              labelText
+            />
+          ) : (
+            <></>
+          )}
           {image && (
             <img
               src={image}

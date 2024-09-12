@@ -7,11 +7,12 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 6;
+    const limit = parseInt(req.query.limit) || 5;
     const allPosts = await Post.find({})
       .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(limit);
+
     if (allPosts) {
       res.status(200).json(allPosts);
     } else {

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../slices/usersApiSlice";
 import { toast } from "react-toastify";
 import { Button, TextInput } from "flowbite-react";
+import { setCredentials } from "../slices/authSlice";
 
 const Signup = () => {
   const [name, setName] = useState("");

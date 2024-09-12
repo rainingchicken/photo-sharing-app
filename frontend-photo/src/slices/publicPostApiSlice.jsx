@@ -3,8 +3,8 @@ import { apiSlice } from "./apiSlice.jsx";
 export const publicPostApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllPublicPosts: builder.mutation({
-      query: () => ({
-        url: `/api/allposts`,
+      query: (data) => ({
+        url: `/api/allposts?${data}`,
         method: "GET",
       }),
     }),
