@@ -70,7 +70,11 @@ const PostDisplayAllPublic = () => {
       </div>
       <div>
         {showMore && (
-          <Button className="mx-auto my-1" onClick={handleShowMore}>
+          <Button
+            gradientDuoTone="purpleToBlue"
+            className="mx-auto my-1"
+            onClick={handleShowMore}
+          >
             SHOW MORE
           </Button>
         )}
