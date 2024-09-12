@@ -21,26 +21,31 @@ const PostDisplayAll = () => {
 
   return (
     <div className="grid grid-cols-3 gap-4 p-8">
-      {isLoading && <Spinner size="xxxl" aria-label="loading all posts" />}
-      {posts &&
-        posts.map((post) => {
-          return (
-            <div
-              className="scale-100 z-10 transition-scale duration-200 hover:scale-105"
-              key={post._id}
-            >
-              <Link to={`/posts/${post._id}`}>
-                <img
-                  className="w-full aspect-auto"
-                  src={post.image}
-                  alt={post.title}
-                />
-              </Link>
-              <p>{post.title}</p>
-              <Link to={`/posts/${post._id}`}>View</Link>
-            </div>
-          );
-        })}
+      {isLoading ? (
+        <Spinner size="xxl" aria-label="loading all posts" />
+      ) : (
+        <>
+          {posts &&
+            posts.map((post) => {
+              return (
+                <div
+                  className="scale-100 z-10 transition-scale duration-200 hover:scale-105"
+                  key={post._id}
+                >
+                  <Link to={`/posts/${post._id}`}>
+                    <img
+                      className="w-full aspect-auto"
+                      src={post.image}
+                      alt={post.title}
+                    />
+                  </Link>
+                  <p>{post.title}</p>
+                  <Link to={`/posts/${post._id}`}>View</Link>
+                </div>
+              );
+            })}
+        </>
+      )}
     </div>
   );
 };

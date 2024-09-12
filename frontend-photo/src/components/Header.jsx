@@ -16,6 +16,9 @@ const Header = () => {
         <Navbar.Link active={path === "/"} to="/" as={Link}>
           Home
         </Navbar.Link>
+        <Navbar.Link active={path === "/browse"} to="/browse" as={Link}>
+          Browse
+        </Navbar.Link>
         {!userInfo ? (
           <>
             <Navbar.Link active={path === "/login"} to="/login" as={Link}>

@@ -20,11 +20,13 @@ import Login from "./pages/Login.jsx";
 import Logout from "./pages/Logout.jsx";
 import Signup from "./pages/Signup.jsx";
 import SinglePostPublic from "./pages/SinglePostPublic.jsx";
+import Browse from "./pages/Browse.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/browse" element={<Browse />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/allposts/:_id" element={<SinglePostPublic />} />

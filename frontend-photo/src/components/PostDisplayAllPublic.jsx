@@ -47,21 +47,30 @@ const PostDisplayAllPublic = () => {
 
   return (
     <div className="grid grid-cols-3 gap-4 p-8 ">
-      {isLoading && <Spinner size="xxxl" aria-label="loading all posts" />}
-      {posts &&
-        posts.map((post) => {
-          return (
-            <Link key={post._id} to={`/allposts/${post._id}`}>
-              <div className="scale-100 z-10 transition-scale duration-200 hover:scale-105">
-                <img src={post.image} alt={post.title} />
-                <p>{post.title}</p>
-              </div>
-            </Link>
-          );
-        })}
-      <div>
-        {showMore && <Button onClick={handleShowMore}>SHOW MORE</Button>}
-      </div>
+      {isLoading ? (
+        <Spinner size="xxl" aria-label="loading all posts" />
+      ) : (
+        <>
+          {posts &&
+            posts.map((post) => {
+              return (
+                <Link key={post._id} to={`/allposts/${post._id}`}>
+                  <div className="scale-100 z-10 transition-scale duration-200 hover:scale-105">
+                    <img src={post.image} alt={post.title} />
+                    <p>{post.title}</p>
+                  </div>
+                </Link>
+              );
+            })}
+          <div>
+            {showMore && (
+              <Button className="mx-auto my-1" onClick={handleShowMore}>
+                SHOW MORE
+              </Button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -22,6 +22,7 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
   - deployment
 
 - features
+
   - upload image file input
   - submit button
   - display containers
@@ -29,3 +30,9 @@ https://global-hack-week-cloud-22087.devpost.com/?ref_feature=challenge&ref_medi
   - toastify for errors/feedbacks
   - homepage of all images
   - personal dashboard
+
+  Images:
+
+  - Photo by Pixabay: https://www.pexels.com/photo/close-up-photo-of-cute-sleeping-cat-416160/
+  - Photo by Pixabay from Pexels: https://www.pexels.com/photo/white-and-grey-kitten-on-brown-and-black-leopard-print-textile-45201/
+  - Photo by Wojciech Kumpicki from Pexels: https://www.pexels.com/photo/orange-tabby-cat-near-window-2071873/

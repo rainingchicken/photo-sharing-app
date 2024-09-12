@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { useGetAPostMutation } from "../slices/postApiSlice";
 import { toast } from "react-toastify";
 import { Spinner } from "flowbite-react";
+import { useGetAPublicPostMutation } from "../slices/publicPostApiSlice";
 
 const PostDisplayPublic = ({ _id: _id }) => {
   const [post, setPost] = useState(null);
 
-  const [getPostAPICall, { isLoading }] = useGetAPostMutation();
+  const [getPublicPostAPICall, { isLoading }] = useGetAPublicPostMutation();
 
   const fetchAPost = async () => {
     try {
-      const res = await getPostAPICall(_id).unwrap();
+      const res = await getPublicPostAPICall(_id).unwrap();
       setPost(res);
     } catch (error) {
       toast.error("Cannot load post");
